@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Subscriber, BehaviorSubject, Observable } from "rxjs";
+import { Subscriber, BehaviorSubject, Observable } from "rxjs/Rx";
 import { DisplayObject } from "pixi.js";
 
 import { KeyboardService, KeyboardCode } from "../../util/keyboard.service";

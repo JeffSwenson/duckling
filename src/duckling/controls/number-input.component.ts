@@ -35,7 +35,7 @@ export class NumberInputComponent {
     /**
      * Reference of the input component used to get the raw value for special calculations
      */
-    @ViewChild("validatedInputComponent")
+    @ViewChild("validatedInputComponent", { static: false })
     validatedInputComponent: ValidatedInputComponent;
 
     /**
@@ -67,7 +67,7 @@ export class NumberInputComponent {
     onHitEnter() {
         let rawValue = this.validatedInputComponent.rawValue;
         try {
-            let evaluatedValue = math.eval(rawValue);
+            let evaluatedValue = math.evaluate(rawValue);
             if (this.combinedValidators(evaluatedValue + "")) {
                 this.validInput.emit(evaluatedValue);
             }

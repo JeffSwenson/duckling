@@ -24,16 +24,9 @@ moveTask('electron', 'src/electron/**', 'build/electron');
 moveTask('index', 'src/index.html', 'build');
 moveTask('resources', 'resources/**', 'build/resources');
 
-gulp.task('duckling', [
-    'index',
-    'electron',
-    'css',
-    'resources'
-]);
+gulp.task('duckling', gulp.series('index', 'electron', 'css', 'resources'));
 
-gulp.task('default', [
-    'duckling'
-]);
+gulp.task('default', gulp.series('duckling'));
 
 function swallowError (error) {
     console.log(error.toString());

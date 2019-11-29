@@ -9,9 +9,10 @@ import {
     Container,
     BaseTexture,
     Point,
-    extras,
     Text,
+    TilingSprite
 } from "pixi.js";
+import * as PIXI from "pixi.js";
 
 import { AssetService } from "../../project";
 import { Entity } from "../../entitysystem/entity";
@@ -300,8 +301,8 @@ export class ShapeDrawnConstruct extends DrawnConstruct {
         this.transformProperties = transformProperties;
 
         let colorHex = colorToHex(this._shapeDrawable.shape.fillColor);
-        this._graphics.beginFill(parseInt(colorHex, 16), 1);
-        this._graphics.fillAlpha = this._shapeDrawable.shape.fillColor.a / 255;
+        this._graphics.beginFill(parseInt(colorHex, 16), this._shapeDrawable.shape.fillColor.a / 255);
+        // this._graphics.fillColor = this._shapeDrawable.shape.fillColor.a / 255;
         let shapeType = cppTypeToShapeType(
             this._shapeDrawable.shape.__cpp_type
         );
@@ -337,7 +338,7 @@ export class ImageDrawnConstruct extends DrawnConstruct {
         this.transformProperties = transformProperties;
 
         if (this._imageDrawable.isTiled && this._imageDrawable.tiledArea) {
-            this._sprite = new extras.TilingSprite(
+            this._sprite = new TilingSprite(
                 this._texture,
                 this._imageDrawable.tiledArea.x,
                 this._imageDrawable.tiledArea.y

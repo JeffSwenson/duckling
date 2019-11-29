@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { loader, Texture, Rectangle } from "pixi.js";
+import { Loader, Texture, Rectangle } from "pixi.js";
 import { BehaviorSubject } from "rxjs";
 import { load as webFontLoader } from "webfontloader";
 import { Howl } from "howler";
@@ -25,6 +25,7 @@ export interface LoadingAsset {
 export type AssetMap = { [key: string]: Asset };
 
 const EDITOR_SPECIFIC_ASSET_PREFIX = "DUCKLING_PRELOADED_ASSET__";
+const loader = Loader.shared;
 
 @Injectable()
 export class AssetService {

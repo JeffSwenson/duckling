@@ -118,8 +118,8 @@ export class MapEditorComponent implements AfterViewInit, OnInit, OnDestroy {
     private _toolDrawnConstructChangedSubscription: Subscriber<any>;
     private _drawingCache: DrawableCache = { layers: [], entityCache: {} };
 
-    @ViewChild("canvasElement") canvasElement: ElementRef;
-    @ViewChild("canvasElement") canvasComponent: CanvasComponent;
+    @ViewChild("canvasElement", { static: false }) canvasElement: ElementRef;
+    @ViewChild("canvasElement", { static: false }) canvasComponent: CanvasComponent;
 
     constructor(
         public projectService: ProjectService,

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Subscriber, BehaviorSubject, Observable } from "rxjs";
+import { Subscriber, BehaviorSubject, Observable } from "rxjs/Rx";
 import { Container, DisplayObject, Graphics } from "pixi.js";
 
 import { DrawnConstruct } from "../drawing/drawn-construct";

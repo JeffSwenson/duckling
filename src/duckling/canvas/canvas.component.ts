@@ -15,8 +15,7 @@ import { Observable } from "rxjs";
 import {
     autoDetectRenderer,
     DisplayObject,
-    WebGLRenderer,
-    CanvasRenderer,
+    Renderer,
     Graphics,
     Container,
     Point,
@@ -71,7 +70,7 @@ export class CanvasComponent implements OnChanges, OnDestroy, AfterViewInit {
     @Input() toolDisplayObject: DisplayObject;
     @Input() tool: BaseTool;
 
-    @ViewChild("canvas") canvasElement: ElementRef;
+    @ViewChild("canvas", {static: false}) canvasElement: ElementRef;
 
     /**
      * Event that is published when a user trys to copy something in the canvas.
@@ -94,7 +93,7 @@ export class CanvasComponent implements OnChanges, OnDestroy, AfterViewInit {
     private _zoomLevel = DEFAULT_ZOOM_LEVEL;
     private _mouseLocation: Vector = { x: 0, y: 0 };
     private _zoomInCanvasCoords: Vector = null;
-    private _renderer: WebGLRenderer | CanvasRenderer;
+    private _renderer: Renderer;
     private _scrollStageOffset = 32;
     private _viewInitialized = false;
     private _scrollPosition: Vector = { x: 0, y: 0 };
@@ -112,23 +111,12 @@ export class CanvasComponent implements OnChanges, OnDestroy, AfterViewInit {
         this.setupContainingElementEvents();
 
         if (this._optionsService.getSetting("useWebGL", true)) {
-            this._renderer = new WebGLRenderer(
-                this.elementDimensions.x,
-                this.elementDimensions.y,
-                {
-                    view: this.canvasElement.nativeElement,
-                    backgroundColor: 0xffffff,
-                }
-            );
-        } else {
-            this._renderer = new CanvasRenderer(
-                this.elementDimensions.x,
-                this.elementDimensions.y,
-                {
-                    view: this.canvasElement.nativeElement,
-                    backgroundColor: 0xffffff,
-                }
-            );
+            this._renderer = new Renderer({
+                width: this.elementDimensions.x,
+                height: this.elementDimensions.y,
+                view: this.canvasElement.nativeElement,
+                backgroundColor: 0xffffff,
+            });
         }
 
         this._resizeCanvasElements();

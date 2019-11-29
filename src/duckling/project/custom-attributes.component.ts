@@ -74,7 +74,7 @@ import { CustomAttribute } from "./custom-attribute";
 export class CustomAttributesComponent implements AfterViewInit {
     curAddingSchema: JsonSchemaEdit = { keys: [], contents: [] };
     curAddingName: string = "";
-    @ViewChild("container") containerDiv: ElementRef;
+    @ViewChild("container", { static: false }) containerDiv: ElementRef;
 
     constructor(
         private _project: ProjectService,

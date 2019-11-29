@@ -15,16 +15,13 @@ export class ElectronDialogService implements DialogService {
     }
 
     showOpenDialog(options: any, callback?: (fileNames: string[]) => void) {
-        this._zone.runOutsideAngular(() => {
-            this._dialog.showOpenDialog(
+        this._zone.runOutsideAngular(async () => {
+            let result = await this._dialog.showOpenDialog(
                 remote.getCurrentWindow(),
-                options,
-                (fileNames) => {
-                    if (callback) {
-                        this._zone.run(() => callback(fileNames));
-                    }
-                }
-            );
+                options);
+            if (callback) {
+                this._zone.run(() => callback(result.filePaths));
+            }
         });
     }
 

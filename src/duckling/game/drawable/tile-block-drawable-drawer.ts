@@ -6,8 +6,9 @@ import {
     DisplayObject,
     Container,
     BaseTexture,
-    extras,
+    TilingSprite
 } from "pixi.js";
+import * as PIXI from "pixi.js";
 
 import { drawMissingAsset } from "../../canvas/drawing/util";
 import {
@@ -154,7 +155,7 @@ class TileBlockDrawnConstruct extends DrawnConstruct {
 
     private _getTiledSprite(position: Vector, texture: Texture): DisplayObject {
         let tileAreaSizes = this._getTileAreaSizes(position);
-        let sprite = new extras.TilingSprite(
+        let sprite = new TilingSprite(
             texture,
             tileAreaSizes.x,
             tileAreaSizes.y

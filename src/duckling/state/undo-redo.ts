@@ -157,7 +157,7 @@ function _undo<T>(state: UndoRedoState<T>): UndoRedoState<T> {
         let undoHistory: List<any> = state.undoHistory
             ? state.undoHistory
             : List();
-        let nextState = state.stateHistory.last();
+        let nextState = state.stateHistory.last<T>();
         return {
             stateHistory: state.stateHistory.pop(),
             undoHistory: undoHistory.push(state.state),

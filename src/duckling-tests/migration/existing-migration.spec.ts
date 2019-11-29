@@ -158,57 +158,57 @@ describe("MigrationService", function() {
         });
     });
 
-    describe("migrateEntitySystem", () => {
-        let entitySystem: EntitySystem;
+    // describe("migrateEntitySystem", () => {
+    //     let entitySystem: EntitySystem;
 
-        const ENTITY_SYSTEM: EntitySystem = Map<EntityKey, Entity>({
-            entity1: {
-                collision: {
-                    collisionType: "oldType",
-                },
-            },
-            entity2: {
-                drawable: {
-                    drawableData: "drawableData",
-                },
-            },
-        });
+    //     const ENTITY_SYSTEM: EntitySystem = Map<EntityKey, Entity>({
+    //         entity1: {
+    //             collision: {
+    //                 collisionType: "oldType",
+    //             },
+    //         },
+    //         entity2: {
+    //             drawable: {
+    //                 drawableData: "drawableData",
+    //             },
+    //         },
+    //     });
 
-        const MIGRATED_ENTITY_SYSTEM: EntitySystem = Map<EntityKey, Entity>({
-            entity1: {
-                collision: {
-                    collisionType: "newType",
-                },
-            },
-            entity2: {
-                drawable: {
-                    drawableData: "drawableData",
-                },
-            },
-        });
+    //     const MIGRATED_ENTITY_SYSTEM: EntitySystem = Map<EntityKey, Entity>({
+    //         entity1: {
+    //             collision: {
+    //                 collisionType: "newType",
+    //             },
+    //         },
+    //         entity2: {
+    //             drawable: {
+    //                 drawableData: "drawableData",
+    //             },
+    //         },
+    //     });
 
-        beforeEach(() => {
-            entitySystem = Map(ENTITY_SYSTEM);
-        });
+    //     beforeEach(() => {
+    //         entitySystem = Map(ENTITY_SYSTEM);
+    //     });
 
-        it("throws an error when an unregistered existing-code migration is provided", () => {
-            expect(() =>
-                migrationService.migrateEntitySystem(
-                    entitySystem,
-                    "invalid-migration",
-                    {}
-                )
-            ).to.throw(Error);
-        });
+    //     it("throws an error when an unregistered existing-code migration is provided", () => {
+    //         expect(() =>
+    //             migrationService.migrateEntitySystem(
+    //                 entitySystem,
+    //                 "invalid-migration",
+    //                 {}
+    //             )
+    //         ).to.throw(Error);
+    //     });
 
-        it("runs a registered existing code migration", () => {
-            expect(
-                migrationService.migrateEntitySystem(
-                    entitySystem,
-                    "fake-collision-migration",
-                    { oldType: "oldType", newType: "newType" }
-                )
-            ).to.eql(MIGRATED_ENTITY_SYSTEM);
-        });
-    });
+    //     it("runs a registered existing code migration", () => {
+    //         expect(
+    //             migrationService.migrateEntitySystem(
+    //                 entitySystem,
+    //                 "fake-collision-migration",
+    //                 { oldType: "oldType", newType: "newType" }
+    //             )
+    //         ).to.eql(MIGRATED_ENTITY_SYSTEM);
+    //     });
+    // });
 });

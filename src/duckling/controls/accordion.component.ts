@@ -41,7 +41,7 @@ import { TemplateWrapperDirective } from "./template-wrapper.directive";
     `,
 })
 export class AccordionComponent<T> {
-    @ContentChild(TemplateRef) elementTemplate: TemplateRef<any>;
+    @ContentChild(TemplateRef, { static: false }) elementTemplate: TemplateRef<any>;
     /**
      * The list of elements to be displayed in the accordion
      */

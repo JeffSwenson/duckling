@@ -35,7 +35,7 @@ export class ValidatedInputComponent implements OnChanges {
     /**
      * Reference of the input component used to get the raw value for special calculations
      */
-    @ViewChild("inputComponent") inputComponent: InputComponent;
+    @ViewChild("inputComponent", { static: false }) inputComponent: InputComponent;
 
     /**
      * Text label displayed to the user.

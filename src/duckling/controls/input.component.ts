@@ -30,7 +30,7 @@ export class InputComponent {
     /**
      * HTMLElement of the input element
      */
-    @ViewChild("rawInputElement") rawInputElement: ElementRef;
+    @ViewChild("rawInputElement", { static: false }) rawInputElement: ElementRef;
 
     /**
      * Text label displayed to the user.
